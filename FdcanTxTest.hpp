@@ -13,9 +13,9 @@ depends: []
 #include "app_framework.hpp"
 #include "can.hpp"
 
-class FdcanTx : public LibXR::Application {
+class FdcanTxTest : public LibXR::Application {
 public:
-  FdcanTx(LibXR::HardwareContainer &hw, LibXR::ApplicationManager &app)
+  FdcanTxTest(LibXR::HardwareContainer &hw, LibXR::ApplicationManager &app)
       : can1_(hw.template FindOrExit<LibXR::CAN>({"fdcan1"})),
         can2_(hw.template FindOrExit<LibXR::CAN>({"fdcan2"})),
         can3_(hw.template FindOrExit<LibXR::CAN>({"fdcan3"})) {
@@ -25,7 +25,7 @@ public:
 
   void OnMonitor() override {}
 
-  static void ThreadFunc(FdcanTx *fdcan_tx) {
+  static void ThreadFunc(FdcanTxTest *fdcan_tx) {
     while (true) {
       fdcan_tx->Fdcan1Send();
       fdcan_tx->Fdcan2Send();
